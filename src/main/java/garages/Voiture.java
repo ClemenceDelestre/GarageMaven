@@ -28,9 +28,15 @@ public class Voiture {
 	 * @throws java.lang.Exception Si déjà dans un garage
 	 */
 	public void entreAuGarage(Garage g) throws Exception {
+                Stationnement s = new Stationnement(this, g);
+                Stationnement k = myStationnements.getLast() ; 
+                    if (k.estEnCours() == false ) {
+                        myStationnements.add(s);
+                } else { 
+                        throw new IllegalArgumentException ("la voiture est deja garée quelque part");
+                    }
 		// Et si la voiture est déjà dans un garage ?
-		Stationnement s = new Stationnement(this, g);
-		myStationnements.add(s);
+
 	}
 
 	/**
